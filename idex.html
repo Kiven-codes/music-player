@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="music-player">
+        <h1>Mini Spotify</h1>
+        <div id="group-selector">
+            <label for="group-select">Select an artist:</label>
+            <select id="group-select" onchange="showGroupSongs()">
+                <option value="">--Select--</option>
+                <option value="group1">DWTA</option>
+                <option value="group2">THE WEEKND</option>
+                <option value="group3">BEN & BEN</option>
+                <option value="group4">ADIE</option>
+                <option value="group5">MAKI</option>
+            </select>
+        </div>
+        <div id="song-list">
+            <div class="song-group" id="group1" style="display: none;">
+                <button onclick="playSong('GROUP 1/an satoyang istora.mp3', 'dwta.jpg', 'An Satuyang Istorya', 0)">An
+                    Satuyang Istorya</button>
+                <button onclick="playSong('GROUP 1/padaba taka.mp3', 'dwta.jpg', 'Padaba Taka', 1)">Padaba Taka</button>
+                <button onclick="playSong('GROUP 1/panganoron.mp3', 'dwta.jpg', 'Panganoron', 2)">Panganoron</button>
+                <button onclick="playSong('GROUP 1/santigwar.mp3', 'dwta.jpg', 'Santigwar', 3)">Santigwar</button>
+                <button
+                    onclick="playSong('GROUP 1/sampung mga dalirir.mp3', 'dwta.jpg', 'Sampung Mga Daliri', 4)">Sampung
+                    Mga Daliri</button>
+            </div>
+            <div class="song-group" id="group2" style="display: none;">
+                <button
+                    onclick="playSong('GROUP 2/The Weeknd - DIE FOR YOU (Lyrics) [ ezmp3.cc ].mp3', 'the weeknd.jpg', 'Die For You', 0)">Die
+                    For You</button>
+                <button
+                    onclick="playSong('GROUP 2/The Weeknd - Reminder (Lyrics) [ ezmp3.cc ].mp3', 'the weeknd.jpg', 'Reminder', 1)">Reminder</button>
+                <button
+                    onclick="playSong('GROUP 2/The Weeknd - Save Your Tears (Lyrics) [ ezmp3.cc ].mp3', 'the weeknd.jpg', 'Save Your Tears', 2)">Save
+                    Your Tears</button>
+                <button
+                    onclick="playSong('GROUP 2/The Weeknd - Starboy (Lyrics) ft. Daft Punk [ ezmp3.cc ].mp3', 'the weeknd.jpg', 'Starboy', 3)">Starboy</button>
+                <button
+                    onclick="playSong('GROUP 2/The Weeknd, JENNIE, Lily-Rose Depp.mp3', 'the weeknd.jpg', 'One Of The Girls', 4)">One
+                    Of The Girls</button>
+            </div>
+            <div class="song-group" id="group3" style="display: none;">
+                <button
+                    onclick="playSong('GROUP 3/Ben&Ben - Araw-Araw.mp3', 'ben and ben.jpg', 'Araw-Araw', 0)">Araw-Araw</button>
+                <button
+                    onclick="playSong('GROUP 3/Ben&Ben - Paninindigan Kita.mp3', 'ben and ben.jpg', 'Paninindigan Kita', 1)">Paninindigan
+                    Kita</button>
+                <button
+                    onclick="playSong('GROUP 3/Ben&Ben - Sa Susunod na Habang Buhay.mp3', 'ben and ben.jpg', 'Sa Susunod na Habang Buhay', 2)">Sa
+                    Susunod na Habang Buhay</button>
+                <button
+                    onclick="playSong('GROUP 3/Leaves - Ben & Ben.mp3', 'ben and ben.jpg', 'Leaves', 3)">Leaves</button>
+                <button
+                    onclick="playSong('GROUP 3/Make It With You - Ben&Ben.mp3', 'ben and ben.jpg', 'Make It With You', 4)">Make
+                    It With You</button>
+            </div>
+            <div class="song-group" id="group4" style="display: none;">
+                <button
+                    onclick="playSong('GROUP 4/Adie - Paraluman (Lyrics) [ ezmp3.cc ].mp3', 'adie.jpg', 'Paraluman', 0)">Paraluman</button>
+                <button
+                    onclick="playSong('GROUP 4/Adie - Tahanan (Official Lyric Video) [ ezmp3.cc ].mp3', 'adie.jpg', 'Tahanan', 1)">Tahanan</button>
+                <button
+                    onclick="playSong('GROUP 4/Adie - Kursunada (Lyrics Video) [ ezmp3.cc ].mp3', 'adie.jpg', 'Kursunada', 2)">Kursunada</button>
+                <button
+                    onclick="playSong('GROUP 4/Adie, Janine Berdin - Mahika (Lyrics) [ ezmp3.cc ].mp3', 'adie.jpg', 'Mahika', 3)">Mahika</button>
+                <button
+                    onclick="playSong('GROUP 4/Adie - Youll Be Safe Here (Lyrics) 🎵 [ ezmp3.cc ].mp3', 'adie.jpg', 'You\'ll Be Safe Here', 4)">You'll Be Safe Here</button>
+            </div>
+            <div class="song-group" id="group5" style="display: none;">
+                <button onclick="playSong('GROUP 5/Maki - Dilaw.mp3', 'maki.jpg', 'Dilaw', 0)">Dilaw</button>
+                <button onclick="playSong('GROUP 5/Maki - HBD.mp3', 'maki.jpg', 'HBD', 1)">HBD</button>
+                <button onclick="playSong('GROUP 5/Maki - Kailan.mp3', 'maki.jpg', 'Kailan', 2)">Kailan</button>
+                <button onclick="playSong('GROUP 5/Maki - Namumula.mp3', 'maki.jpg', 'Namumula', 3)">Namumula</button>
+                <button onclick="playSong('GROUP 5/Maki - Saan.mp3', 'maki.jpg', 'Saan?', 4)">Saan?</button>
+            </div>
+        </div>
+        <div id="image-container" style="display: none;">
+            <img id="image-display" src="" alt="Song Image">
+            <div id="song-info">
+                <h3 id="song-title"></h3>
+                <div id="controls">
+                    <button onclick="prevSong()">&#9664; Prev</button>
+                    <button onclick="nextSong()">Next &#9654;</button>
+                </div>
+                <div id="audio-controls">
+                    <button id="play-pause" onclick="togglePlayPause()">&#9654;</button>
+                    <input type="range" id="seek-bar" value="0">
+                    <span id="current-time">0:00</span> / <span id="duration">0:00</span>
+                </div>
+            </div>
+            <button onclick="goBack()">Back</button>
+        </div>
+    </div>
+    <audio id="audio-player"></audio>
+    <script src="script.js"></script>
+</body>
+
+</html>
