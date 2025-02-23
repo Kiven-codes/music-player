@@ -36,6 +36,8 @@ function playSong(song, image, title, index) {
         var time = (seekBar.value / 100) * audioPlayer.duration;
         audioPlayer.currentTime = time;
     });
+
+    audioPlayer.addEventListener('ended', nextSong);
 }
 
 function showGroupSongs() {
