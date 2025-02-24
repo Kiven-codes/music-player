@@ -2,6 +2,7 @@ let currentSongIndex = 0;
 let currentGroup = [];
 let isPlaying = false;
 let currentGroupIndex = 0;
+let isRandomPlaying = false;
 
 function handleLogin(event) {
     event.preventDefault();
@@ -74,11 +75,15 @@ function playSong(song, image, title, index) {
     });
 
     audioPlayer.addEventListener('ended', function() {
-        const nextSongButton = currentGroup[currentSongIndex + 1];
-        if (nextSongButton) {
-            nextSongButton.click();
+        if (isRandomPlaying) {
+            playRandomSong();
         } else {
-            switchToNextArtist();
+            const nextSongButton = currentGroup[currentSongIndex + 1];
+            if (nextSongButton) {
+                nextSongButton.click();
+            } else {
+                switchToNextArtist();
+            }
         }
     });
 }
@@ -99,6 +104,10 @@ function showGroupSongs() {
         document.getElementById('image-container').style.display = 'none';
         document.getElementById('song-list').style.display = 'block';
     }
+
+    // Show the "Play Random" button
+    document.getElementById('play-random-button').style.display = 'block';
+    isRandomPlaying = false;
 }
 
 function goBack() {
@@ -160,4 +169,23 @@ function switchToNextArtist() {
     if (currentGroup.length > 0) {
         currentGroup[0].click();
     }
+}
+
+function playRandomSong() {
+    var groups = document.getElementsByClassName('song-group');
+    var allSongs = [];
+    for (var i = 0; i < groups.length; i++) {
+        allSongs = allSongs.concat(Array.from(groups[i].getElementsByTagName('button')));
+    }
+    var randomSong = allSongs[Math.floor(Math.random() * allSongs.length)];
+    randomSong.click();
+
+    // Hide the "Play Random" button
+    document.getElementById('play-random-button').style.display = 'none';
+    isRandomPlaying = true;
+
+    // Set the selected artist in the dropdown
+    var selectedGroup = randomSong.closest('.song-group').id;
+    var groupSelect = document.getElementById('group-select');
+    groupSelect.value = selectedGroup;
 }
