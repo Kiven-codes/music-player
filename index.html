@@ -11,15 +11,18 @@
 <body>
     <div id="login-container">
         <h1>Login</h1>
-    <form id="login-form" onsubmit="return handleLogin(event)">
-        <input type="text" id="username" placeholder="Username" required>
-        <input type="password" id="password" placeholder="Password" required>
-        <button type="submit">Login</button>
-        <a href="https://www.instagram.com/stfuvikk?igsh=dWd3ajFuZ3J1cWxt" target="_blank" id="forgot-password" rel="noopener">
-            <img src="stfuvikk_qr.png" alt="Instagram QR Code" style="width: 100px; height: 100px;">
-            <p>Click and DM for username and password</p>
-        </a>
-    </form>
+   <form id="login-form" onsubmit="return handleLogin(event)">
+    <input type="text" id="username" placeholder="Username" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <label>
+        <input type="checkbox" id="remember-me"> Remember me
+    </label>
+    <button type="submit">Login</button>
+    <a href="https://www.instagram.com/stfuvikk?igsh=dWd3ajFuZ3J1cWxt" target="_blank" id="forgot-password"
+        rel="noopener">
+        <img src="stfuvikk_qr.png" alt="Instagram QR Code" style="width: 100px; height: 100px;">
+        <p>Click and DM for username and password</p>
+    </a>
     </div>
 
     <div id="music-player" style="display: none;">
