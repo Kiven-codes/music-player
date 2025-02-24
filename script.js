@@ -2,6 +2,20 @@ let currentSongIndex = 0;
 let currentGroup = [];
 let isPlaying = false;
 
+function handleLogin(event) {
+    event.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Simple authentication check (replace with real authentication logic)
+    if (username === 'minispotify' && password === 'MiniSpotify_27') {
+        document.getElementById('login-container').style.display = 'none';
+        document.getElementById('music-player').style.display = 'block';
+    } else {
+        alert('Invalid username or password');
+    }
+}
+
 function playSong(song, image, title, index) {
     var audioPlayer = document.getElementById('audio-player');
     var imageDisplay = document.getElementById('image-display');
@@ -52,6 +66,8 @@ function showGroupSongs() {
     if (selectedGroup) {
         document.getElementById(selectedGroup).style.display = 'block';
         currentGroup = Array.from(document.getElementById(selectedGroup).getElementsByTagName('button'));
+        document.getElementById('image-container').style.display = 'none';
+        document.getElementById('song-list').style.display = 'block';
     }
 }
 
