@@ -1,6 +1,7 @@
 let currentSongIndex = 0;
 let currentGroup = [];
 let isPlaying = false;
+let currentGroupIndex = 0;
 
 function handleLogin(event) {
     event.preventDefault();
@@ -51,7 +52,14 @@ function playSong(song, image, title, index) {
         audioPlayer.currentTime = time;
     });
 
-    audioPlayer.addEventListener('ended', nextSong);
+    audioPlayer.addEventListener('ended', function() {
+        const nextSongButton = currentGroup[currentSongIndex + 1];
+        if (nextSongButton) {
+            nextSongButton.click();
+        } else {
+            switchToNextArtist();
+        }
+    });
 }
 
 function showGroupSongs() {
@@ -66,6 +74,7 @@ function showGroupSongs() {
     if (selectedGroup) {
         document.getElementById(selectedGroup).style.display = 'block';
         currentGroup = Array.from(document.getElementById(selectedGroup).getElementsByTagName('button'));
+        currentGroupIndex = Array.from(groups).indexOf(document.getElementById(selectedGroup));
         document.getElementById('image-container').style.display = 'none';
         document.getElementById('song-list').style.display = 'block';
     }
@@ -115,4 +124,19 @@ function formatTime(seconds) {
         seconds = '0' + seconds;
     }
     return minutes + ':' + seconds;
+}
+
+function switchToNextArtist() {
+    var groups = document.getElementsByClassName('song-group');
+    groups[currentGroupIndex].style.display = 'none';
+    currentGroupIndex = (currentGroupIndex + 1) % groups.length;
+    groups[currentGroupIndex].style.display = 'block';
+
+    var groupSelect = document.getElementById('group-select');
+    groupSelect.selectedIndex = currentGroupIndex + 1;
+
+    currentGroup = Array.from(groups[currentGroupIndex].getElementsByTagName('button'));
+    if (currentGroup.length > 0) {
+        currentGroup[0].click();
+    }
 }
