@@ -7,15 +7,36 @@ function handleLogin(event) {
     event.preventDefault();
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
+    const rememberMe = document.getElementById('remember-me').checked;
 
     // Simple authentication check (replace with real authentication logic)
     if (username === 'minispotify' && password === 'MiniSpotify_27') {
+        if (rememberMe) {
+            localStorage.setItem('username', username);
+            localStorage.setItem('password', password);
+        } else {
+            localStorage.removeItem('username');
+            localStorage.removeItem('password');
+        }
         document.getElementById('login-container').style.display = 'none';
         document.getElementById('music-player').style.display = 'block';
     } else {
         alert('Invalid username or password');
     }
 }
+
+function loadCredentials() {
+    const savedUsername = localStorage.getItem('username');
+    const savedPassword = localStorage.getItem('password');
+
+    if (savedUsername && savedPassword) {
+        document.getElementById('username').value = savedUsername;
+        document.getElementById('password').value = savedPassword;
+        document.getElementById('remember-me').checked = true;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', loadCredentials);
 
 function playSong(song, image, title, index) {
     var audioPlayer = document.getElementById('audio-player');
